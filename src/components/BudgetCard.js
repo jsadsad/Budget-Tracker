@@ -1,15 +1,20 @@
-import { Card, ProgressBar } from 'react-bootstrap'
+import { Card, ProgressBar, Stack, Button } from 'react-bootstrap'
 import { currencyFormatter } from '../utils'
 
-const BudgetCard = ({ name, amount, max }) => {
+const BudgetCard = ({ name, amount, max, grey }) => {
+  const classNames = []
+
+  if (amount > max) classNames.push('bg-danger', 'bg-opacity-10')
+  else if (grey) classNames.push('bg-light')
+
   return (
     <div>
-      <Card>
+      <Card className={classNames.join(' ')}>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
             <div className="me-2">{name}</div>
             <div className="d-flex align-items-baseline">
-              {currencyFormatter.format(amount)} /{' '}
+              {currencyFormatter.format(amount)} /
               <span className="text-muted fs-6 ms-1">
                 {currencyFormatter.format(max)}
               </span>
@@ -22,6 +27,12 @@ const BudgetCard = ({ name, amount, max }) => {
             max={max}
             now={amount}
           />
+          <Stack direction="horizontal" gap="2" className="mt-4">
+            <Button variant="outline-primary" className="ms-auto">
+              Add Expense
+            </Button>
+            <Button variant="outline-secondary">View Expenses</Button>
+          </Stack>
         </Card.Body>
       </Card>
     </div>
