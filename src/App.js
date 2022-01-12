@@ -1,5 +1,5 @@
-function App() {
-  return null
+const App = () => {
+  return 'Hello World'
 }
 
 export default App
