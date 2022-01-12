@@ -16,7 +16,7 @@ export const BudgetsProvider = ({ children }) => {
   }
 
   const addExpense = ({ description, amount, budgetID }) => {
-    setExpense((prevExpenses) => {
+    setExpenses((prevExpenses) => {
       return [...prevExpenses, { id: uuidV4(), description, amount, budgetID }]
     })
   }
@@ -31,13 +31,13 @@ export const BudgetsProvider = ({ children }) => {
 
   const deleteBudget = ({ id }) => {
     setBudgets((prevBudgets) => {
-      return prevBudgets.filter(budget > budget.id !== id)
+      return prevBudgets.filter((budget) => budget.id !== id)
     })
   }
 
   const deleteExpense = ({ id }) => {
     setExpenses((prevExpenses) => {
-      return prevExpenses.filter(expense > expense.id !== id)
+      return prevExpenses.filter((expense) => expense.id !== id)
     })
   }
 
