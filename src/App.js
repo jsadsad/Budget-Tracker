@@ -3,9 +3,29 @@ import { Button, Stack } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 import AddBudgetModal from './components/AddBudgetModal'
 import BudgetCard from './components/BudgetCard'
+import { useBudgets } from './contexts/BudgetsContext'
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
+  const { budgets, expenses, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+
+  const budgetListItems = () => {
+    return budgets.map((budget) => {
+      const amount = getBudgetExpenses(budget.id).reduce(
+        (total, expense) => total + expense.amount,
+        0
+      )
+      return (
+        <BudgetCard
+          key={budget.id}
+          name={budget.name}
+          amount={amount}
+          max={budget.max}
+        />
+      )
+    })
+  }
+
   return (
     <>
       <Container className="my-4">
@@ -24,6 +44,7 @@ const App = () => {
             alignItems: 'flex-start',
           }}
         >
+          {budgetListItems()}
           <BudgetCard
             grey
             name="Entertainment"
