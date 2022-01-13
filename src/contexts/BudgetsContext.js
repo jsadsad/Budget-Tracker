@@ -44,15 +44,15 @@ export const BudgetsProvider = ({ children }) => {
 
   return (
     <BudgetsContext.Provider
-      value={
-        (budgets,
+      value={{
+        budgets,
         expenses,
         getBudgetExpenses,
         addExpense,
         addBudget,
         deleteBudget,
-        deleteExpense)
-      }
+        deleteExpense,
+      }}
     >
       {children}
     </BudgetsContext.Provider>
