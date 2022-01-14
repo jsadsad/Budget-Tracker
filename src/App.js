@@ -9,30 +9,12 @@ import { useBudgets } from './contexts/BudgetsContext'
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
-  const [addExpenseModalId, setAddExpenseModalId] = useState()
+  const [addExpenseModalBudgetId, setAddExpenseModalId] = useState()
   const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
 
   const openAddExpenseModal = (budgetId) => {
     setShowAddExpenseModal(true)
     setAddExpenseModalId(budgetId)
-  }
-
-  const budgetListItems = () => {
-    return budgets.map((budget) => {
-      const amount = getBudgetExpenses(budget.id).reduce(
-        (total, expense) => total + expense.amount,
-        0
-      )
-      return (
-        <BudgetCard
-          key={budget.id}
-          name={budget.name}
-          amount={amount}
-          max={budget.max}
-          onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-        />
-      )
-    })
   }
 
   return (
@@ -55,7 +37,21 @@ const App = () => {
             alignItems: 'flex-start',
           }}
         >
-          {budgetListItems()}
+          {budgets.map((budget) => {
+            const amount = getBudgetExpenses(budget.id).reduce(
+              (total, expense) => total + expense.amount,
+              0
+            )
+            return (
+              <BudgetCard
+                key={budget.id}
+                name={budget.name}
+                amount={amount}
+                max={budget.max}
+                onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+              />
+            )
+          })}
           <BudgetCard
             grey
             name="Entertainment"
@@ -70,7 +66,7 @@ const App = () => {
       />
       <AddExpenseModal
         show={showAddExpenseModal}
-        defaultBudgetId={addExpenseModalId}
+        defaultBudgetId={addExpenseModalBudgetId}
         handleClose={() => setShowAddExpenseModal(false)}
       />
     </>

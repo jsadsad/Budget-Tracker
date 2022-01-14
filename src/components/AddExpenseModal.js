@@ -14,8 +14,8 @@ const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addExpense({
-      descriptionRef: descriptionRef.current.value,
-      amountRef: parseFloat(amountRef.current.value),
+      description: descriptionRef.current.value,
+      amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,
     })
     handleClose() // close modal whenever we submit
