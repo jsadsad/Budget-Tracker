@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { Button, Stack } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
+
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
 import ViewExpensesModal from './components/ViewExpensesModal'
+
 import BudgetCard from './components/BudgetCard'
 import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
+
 import { useBudgets } from './contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
 
@@ -22,11 +25,30 @@ const App = () => {
     setAddExpenseModalId(budgetId)
   }
 
+  const displayBudgetCards = () => {
+    return budgets.map((budget) => {
+      const amount = getBudgetExpenses(budget.id).reduce(
+        (total, expense) => total + expense.amount,
+        0
+      )
+      return (
+        <BudgetCard
+          key={budget.id}
+          name={budget.name}
+          amount={amount}
+          max={budget.max}
+          onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+          onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
+        />
+      )
+    })
+  }
+
   return (
     <>
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto">Budgets</h1>
+          <h1 className="me-auto">Budget Tracker</h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
@@ -49,24 +71,7 @@ const App = () => {
               setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
             }
           />
-          {budgets.map((budget) => {
-            const amount = getBudgetExpenses(budget.id).reduce(
-              (total, expense) => total + expense.amount,
-              0
-            )
-            return (
-              <BudgetCard
-                key={budget.id}
-                name={budget.name}
-                amount={amount}
-                max={budget.max}
-                onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-                onViewExpensesClick={() =>
-                  setViewExpensesModalBudgetId(budget.id)
-                }
-              />
-            )
-          })}
+          {displayBudgetCards()}
         </div>
       </Container>
       <AddBudgetModal

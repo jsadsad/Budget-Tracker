@@ -1,6 +1,5 @@
-import React from 'react'
-
 import { Stack, Modal, Button } from 'react-bootstrap'
+
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../contexts/BudgetsContext'
 import { currencyFormatter } from '../utils'
 
@@ -20,7 +19,7 @@ const ViewExpensesModal = ({ budgetId, handleClose }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
-            <div>Expenses - {budget?.name}</div>
+            <div>{budget?.name} Expenses</div>
             {budgetId !== UNCATEGORIZED_BUDGET_ID && (
               <Button
                 onClick={() => {
@@ -28,6 +27,7 @@ const ViewExpensesModal = ({ budgetId, handleClose }) => {
                   handleClose()
                 }}
                 variant="outline-danger"
+                size="sm"
               >
                 Delete
               </Button>

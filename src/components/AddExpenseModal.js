@@ -1,8 +1,7 @@
-import React from 'react'
-
-import { Form, Modal, Button } from 'react-bootstrap'
-import { useBudgets } from '../contexts/BudgetsContext'
 import { useRef } from 'react' // creating references via variables.
+import { Form, Modal, Button } from 'react-bootstrap'
+
+import { useBudgets } from '../contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from '../contexts/BudgetsContext'
 
 const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
