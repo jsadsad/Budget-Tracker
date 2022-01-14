@@ -10,17 +10,20 @@ const ThemeSwitcher = () => {
 
   return (
     <Button
-      onClick={() => setTheme(theme == 'dark' ? 'light' : 'dark')}
       style={{ background: 'none', border: 'none', boxShadow: 'none' }}
+      onClick={() => {
+        setTheme(theme == 'dark' ? 'light ' : 'dark')
+        localStorage.setItem('theme', theme)
+      }}
     >
       <img
-        src={theme == 'dark' ? Sun : Moon}
         style={{
           height: '22px',
           width: '22px',
           minWidth: '22px',
           marginBottom: '0',
         }}
+        src={theme == 'dark' ? Sun : Moon}
         alt="theme"
       />
     </Button>
