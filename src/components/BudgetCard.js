@@ -9,6 +9,7 @@ const BudgetCard = ({
   info,
   onAddExpenseClick,
   hideButtons,
+  onViewExpensesClick,
 }) => {
   const classNames = []
   const formattedCurrency = currencyFormatter.format(amount)
@@ -50,7 +51,9 @@ const BudgetCard = ({
           >
             Add Expense
           </Button>
-          <Button variant="outline-secondary">View Expenses</Button>
+          <Button onClick={onViewExpensesClick} variant="outline-secondary">
+            View Expenses
+          </Button>
         </Stack>
       )
   }
