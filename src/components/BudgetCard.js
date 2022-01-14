@@ -1,11 +1,20 @@
 import { Card, ProgressBar, Stack, Button } from 'react-bootstrap'
 import { currencyFormatter } from '../utils'
 
-const BudgetCard = ({ name, amount, max, grey, onAddExpenseClick }) => {
+const BudgetCard = ({
+  name,
+  amount,
+  max,
+  grey,
+  info,
+  onAddExpenseClick,
+  hideButtons,
+}) => {
   const classNames = []
   const formattedCurrency = currencyFormatter.format(amount)
 
   if (amount > max) classNames.push('bg-danger', 'bg-opacity-10')
+  else if (info) classNames.push('bg-info', 'bg-opacity-10')
   else if (grey) classNames.push('bg-light')
 
   const displayBudgetWithMax = () => {
@@ -30,6 +39,22 @@ const BudgetCard = ({ name, amount, max, grey, onAddExpenseClick }) => {
       )
   }
 
+  const displayStack = () => {
+    if (!hideButtons)
+      return (
+        <Stack direction="horizontal" gap="2" className="mt-4">
+          <Button
+            variant="outline-primary"
+            className="ms-auto"
+            onClick={onAddExpenseClick}
+          >
+            Add Expense
+          </Button>
+          <Button variant="outline-secondary">View Expenses</Button>
+        </Stack>
+      )
+  }
+
   return (
     <Card className={classNames.join(' ')}>
       <Card.Body>
@@ -41,16 +66,7 @@ const BudgetCard = ({ name, amount, max, grey, onAddExpenseClick }) => {
           </div>
         </Card.Title>
         {displayPillWithMax()}
-        <Stack direction="horizontal" gap="2" className="mt-4">
-          <Button
-            variant="outline-primary"
-            className="ms-auto"
-            onClick={onAddExpenseClick}
-          >
-            Add Expense
-          </Button>
-          <Button variant="outline-secondary">View Expenses</Button>
-        </Stack>
+        {displayStack()}
       </Card.Body>
     </Card>
   )

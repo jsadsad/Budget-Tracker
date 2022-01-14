@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
 import BudgetCard from './components/BudgetCard'
+import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
 import { useBudgets } from './contexts/BudgetsContext'
 
@@ -38,6 +39,8 @@ const App = () => {
             alignItems: 'flex-start',
           }}
         >
+          <TotalBudgetCard />
+          <UncategorizedBudgetCard />
           {budgets.map((budget) => {
             const amount = getBudgetExpenses(budget.id).reduce(
               (total, expense) => total + expense.amount,
@@ -53,7 +56,7 @@ const App = () => {
               />
             )
           })}
-          <UncategorizedBudgetCard />
+
           <BudgetCard
             grey
             name="Entertainment"
