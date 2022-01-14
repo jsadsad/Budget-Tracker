@@ -40,7 +40,7 @@ const App = () => {
           }}
         >
           <TotalBudgetCard />
-          <UncategorizedBudgetCard />
+          <UncategorizedBudgetCard onAddExpenseClick={openAddExpenseModal} />
           {budgets.map((budget) => {
             const amount = getBudgetExpenses(budget.id).reduce(
               (total, expense) => total + expense.amount,
@@ -56,13 +56,6 @@ const App = () => {
               />
             )
           })}
-
-          <BudgetCard
-            grey
-            name="Entertainment"
-            amount={100}
-            max={1000}
-          ></BudgetCard>
         </div>
       </Container>
       <AddBudgetModal
