@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Button, Stack } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 
+import Layout from './components/Layout'
+import Main from './components/Main'
+
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
 import ViewExpensesModal from './components/ViewExpensesModal'
@@ -12,6 +15,7 @@ import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
 
 import { useBudgets } from './contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
+import ThemesContext from './contexts/ThemesContext'
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
@@ -19,6 +23,9 @@ const App = () => {
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState()
   const [addExpenseModalBudgetId, setAddExpenseModalId] = useState()
   const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+
+  const [theme, setTheme] = useState('light')
+  const value = { theme, setTheme }
 
   const openAddExpenseModal = (budgetId) => {
     setShowAddExpenseModal(true)
@@ -46,6 +53,11 @@ const App = () => {
 
   return (
     <>
+      <ThemesContext.Provider value={value}>
+        <Layout>
+          <Main />
+        </Layout>
+      </ThemesContext.Provider>
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto">Budget Tracker</h1>
