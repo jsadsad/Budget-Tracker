@@ -8,7 +8,14 @@ import { useBudgets } from './contexts/BudgetsContext'
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
-  const { budgets, expenses, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+  const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
+  const [addExpenseModalId, setAddExpenseModalId] = useState()
+  const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+
+  const openAddExpenseModal = (budgetId) => {
+    setShowAddExpenseModal(true)
+    setAddExpenseModalId(budgetId)
+  }
 
   const budgetListItems = () => {
     return budgets.map((budget) => {
@@ -22,6 +29,7 @@ const App = () => {
           name={budget.name}
           amount={amount}
           max={budget.max}
+          onAddExpenseClick={() => openAddExpenseModal(budget.id)}
         />
       )
     })
@@ -35,7 +43,9 @@ const App = () => {
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
             Add Budget
           </Button>
-          <Button variant="outline-primary">Add Expense</Button>
+          <Button variant="outline-primary" onClick={openAddExpenseModal}>
+            Add Expense
+          </Button>
         </Stack>
         <div
           style={{
@@ -59,8 +69,9 @@ const App = () => {
         handleClose={() => setShowAddBudgetModal(false)}
       />
       <AddExpenseModal
-        show={true}
-        handleClose={() => setShowAddBudgetModal(false)}
+        show={showAddExpenseModal}
+        defaultBudgetId={addExpenseModalId}
+        handleClose={() => setShowAddExpenseModal(false)}
       />
     </>
   )
