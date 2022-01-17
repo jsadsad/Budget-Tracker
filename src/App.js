@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Stack } from 'react-bootstrap'
+import { Button, Stack, Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 
 import AddBudgetModal from './components/AddBudgetModal'
@@ -9,6 +9,7 @@ import ViewExpensesModal from './components/ViewExpensesModal'
 import BudgetCard from './components/BudgetCard'
 import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
+import Footer from './components/Footer'
 
 import { useBudgets } from './contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
@@ -45,7 +46,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <Card className="text-center">
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto">Budget Tracker</h1>
@@ -87,7 +88,8 @@ const App = () => {
         budgetId={viewExpensesModalBudgetId}
         handleClose={() => setViewExpensesModalBudgetId()}
       />
-    </>
+      <Footer />
+    </Card>
   )
 }
 
