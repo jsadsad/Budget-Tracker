@@ -9,6 +9,7 @@ const Footer = () => {
             <a
               href="https://github.com/jsadsad/react-budget-app"
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: 'none',
                 fontSize: '1rem',
@@ -22,6 +23,7 @@ const Footer = () => {
             <a
               href="https://jsadsad.io/"
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: 'none',
                 fontSize: '1rem',
@@ -35,6 +37,7 @@ const Footer = () => {
             <a
               href="https://www.linkedin.com/in/joshsad2/"
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: 'none',
                 fontSize: '1rem',
