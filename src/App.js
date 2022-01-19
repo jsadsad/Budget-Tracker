@@ -75,6 +75,7 @@ const App = () => {
           {displayBudgetCards()}
         </div>
       </Container>
+      <Footer />
       <AddBudgetModal
         show={showAddBudgetModal}
         handleClose={() => setShowAddBudgetModal(false)}
