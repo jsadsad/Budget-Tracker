@@ -51,7 +51,7 @@ const App = () => {
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto">Budget Tracker</h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
-            Add Budget
+            Create Budget
           </Button>
           <Button variant="outline-primary" onClick={openAddExpenseModal}>
             Add Expense
