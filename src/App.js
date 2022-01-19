@@ -9,6 +9,7 @@ import ViewExpensesModal from './components/ViewExpensesModal'
 import BudgetCard from './components/BudgetCard'
 import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
+import Footer from './components/Footer'
 
 import { useBudgets } from './contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
@@ -50,7 +51,7 @@ const App = () => {
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto">Budget Tracker</h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
-            Add Budget
+            Create Budget
           </Button>
           <Button variant="outline-primary" onClick={openAddExpenseModal}>
             Add Expense
@@ -74,6 +75,7 @@ const App = () => {
           {displayBudgetCards()}
         </div>
       </Container>
+      <Footer />
       <AddBudgetModal
         show={showAddBudgetModal}
         handleClose={() => setShowAddBudgetModal(false)}
