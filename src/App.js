@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Stack, Card } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 
 import AddBudgetModal from './components/AddBudgetModal'
