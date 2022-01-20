@@ -49,7 +49,12 @@ const App = () => {
     <>
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto">Budget Tracker</h1>
+          <h1
+            className="me-auto"
+            style={{ fontStyle: 'oblique', cursor: 'default' }}
+          >
+            Budget Tracker
+          </h1>
           <Button
             variant="success"
             style={{ boxShadow: 'none' }}
