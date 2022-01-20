@@ -50,10 +50,18 @@ const App = () => {
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
           <h1 className="me-auto">Budget Tracker</h1>
-          <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
+          <Button
+            variant="success"
+            style={{ boxShadow: 'none' }}
+            onClick={() => setShowAddBudgetModal(true)}
+          >
             Create Budget
           </Button>
-          <Button variant="outline-primary" onClick={openAddExpenseModal}>
+          <Button
+            variant="outline-primary"
+            style={{ boxShadow: 'none' }}
+            onClick={openAddExpenseModal}
+          >
             Add Expense
           </Button>
         </Stack>
