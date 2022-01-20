@@ -24,25 +24,34 @@ const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
     <Modal show={show} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>New Expense</Modal.Title>
+          <Modal.Title style={{ color: '#58987A', fontWeight: '700' }}>
+            New Expense
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>
+            <Form.Label style={{ color: '#58987A', fontWeight: '700' }}>
+              Description
+            </Form.Label>
             <Form.Control ref={descriptionRef} type="text" required />
           </Form.Group>
           <Form.Group className="mb-3" controlId="Amount">
-            <Form.Label>Amount</Form.Label>
+            <Form.Label style={{ color: '#58987A', fontWeight: '700' }}>
+              Amount
+            </Form.Label>
             <Form.Control
               ref={amountRef}
               type="number"
               required
               min={0}
               step={0.01}
+              placeholder="$"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
-            <Form.Label>Budget</Form.Label>
+            <Form.Label style={{ color: '#58987A', fontWeight: '700' }}>
+              Budget
+            </Form.Label>
             <Form.Select defaultValue={defaultBudgetId} ref={budgetIdRef}>
               <option id={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
               {budgets.map((budget) => (
