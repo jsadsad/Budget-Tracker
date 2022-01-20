@@ -1,7 +1,7 @@
 import { Stack, Modal, Button } from 'react-bootstrap'
 
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../contexts/BudgetsContext'
-import { currencyFormatter } from '../utils'
+import { currencyFormatter } from '../utils/utils'
 
 const ViewExpensesModal = ({ budgetId, handleClose }) => {
   const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
