@@ -4,6 +4,8 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 const ThemeSwitcher = () => {
   const { theme, setTheme, otherTheme } = useThemes()
 
+  // onstyle and offstyle are NOT persistent after refresh. need to fix conditional logic.
+
   const checked = theme === 'dark'
 
   const sun = (
