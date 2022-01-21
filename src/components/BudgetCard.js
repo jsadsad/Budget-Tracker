@@ -8,6 +8,8 @@ const BudgetCard = ({
   max,
   grey,
   info,
+  theme,
+  otherTheme,
   onAddExpenseClick,
   hideButtons,
   onViewExpensesClick,
@@ -41,6 +43,13 @@ const BudgetCard = ({
       )
   }
 
+  const getProgressBarVariant = (amount, max) => {
+    const ratio = amount / max
+    if (ratio < 0.5) return 'primary'
+    if (ratio < 0.75) return 'warning'
+    return 'danger'
+  }
+
   const displayStack = () => {
     if (!hideButtons)
       return (
@@ -60,7 +69,7 @@ const BudgetCard = ({
   }
 
   return (
-    <Card className={classNames.join(' ')}>
+    <Card bg={theme} className={classNames.join(' ')}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{name}</div>
@@ -74,13 +83,6 @@ const BudgetCard = ({
       </Card.Body>
     </Card>
   )
-}
-
-const getProgressBarVariant = (amount, max) => {
-  const ratio = amount / max
-  if (ratio < 0.5) return 'primary'
-  if (ratio < 0.75) return 'warning'
-  return 'danger'
 }
 
 export default BudgetCard
