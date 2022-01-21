@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 
 import Layout from './components/Layout'
 import Main from './components/Main'
+import ThemeSwitcher from './components/ThemeSwitcher'
 
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
@@ -16,17 +17,17 @@ import Footer from './components/Footer'
 
 import { useBudgets } from './contexts/BudgetsContext'
 import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
-import ThemesContext from './contexts/ThemesContext'
+// import ThemesContext from './contexts/ThemesContext'
+import { useThemes } from './contexts/ThemesContext'
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState()
   const [addExpenseModalBudgetId, setAddExpenseModalId] = useState()
-  const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
 
-  const [theme, setTheme] = useState('light')
-  const value = { theme, setTheme }
+  const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+  const { theme } = useThemes()
 
   const openAddExpenseModal = (budgetId) => {
     setShowAddExpenseModal(true)
@@ -45,6 +46,7 @@ const App = () => {
           name={budget.name}
           amount={amount}
           max={budget.max}
+          theme={theme}
           onAddExpenseClick={() => openAddExpenseModal(budget.id)}
           onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
         />
@@ -54,66 +56,71 @@ const App = () => {
 
   return (
     <>
-      <ThemesContext.Provider value={value}>
-        <Layout>
+      {/* <ThemesContext.Provider value={value}> */}
+      {/* <Layout>
           <Main />
-        </Layout>
-      </ThemesContext.Provider>
-      <Container className="my-4">
-        <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1
-            className="me-auto"
-            style={{ fontStyle: 'oblique', cursor: 'default' }}
+        </Layout> */}
+      {/* </ThemesContext.Provider> */}
+      <Layout>
+        <Container className="my-4">
+          <Stack direction="horizontal" gap="2" className="mb-4">
+            <h1
+              className="me-auto"
+              style={{ fontStyle: 'oblique', cursor: 'default' }}
+            >
+              Budget Tracker
+            </h1>
+            <Button
+              variant="success"
+              style={{ boxShadow: 'none' }}
+              onClick={() => setShowAddBudgetModal(true)}
+            >
+              Create Budget
+            </Button>
+            <Button
+              variant="outline-primary"
+              style={{ boxShadow: 'none' }}
+              onClick={openAddExpenseModal}
+            >
+              Add Expense
+            </Button>
+            {/* <ThemesContext.Provider value={value}> */}
+            <ThemeSwitcher />
+            {/* </ThemesContext.Provider> */}
+          </Stack>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill,minmax(300px, 1fr))',
+              gap: '1rem',
+              alignItems: 'flex-start',
+            }}
           >
-            Budget Tracker
-          </h1>
-          <Button
-            variant="success"
-            style={{ boxShadow: 'none' }}
-            onClick={() => setShowAddBudgetModal(true)}
-          >
-            Create Budget
-          </Button>
-          <Button
-            variant="outline-primary"
-            style={{ boxShadow: 'none' }}
-            onClick={openAddExpenseModal}
-          >
-            Add Expense
-          </Button>
-        </Stack>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill,minmax(300px, 1fr))',
-            gap: '1rem',
-            alignItems: 'flex-start',
-          }}
-        >
-          <TotalBudgetCard />
-          <UncategorizedBudgetCard
-            onAddExpenseClick={openAddExpenseModal}
-            onViewExpensesClick={() =>
-              setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
-            }
-          />
-          {displayBudgetCards()}
-        </div>
-      </Container>
-      <Footer />
-      <AddBudgetModal
-        show={showAddBudgetModal}
-        handleClose={() => setShowAddBudgetModal(false)}
-      />
-      <AddExpenseModal
-        show={showAddExpenseModal}
-        defaultBudgetId={addExpenseModalBudgetId}
-        handleClose={() => setShowAddExpenseModal(false)}
-      />
-      <ViewExpensesModal
-        budgetId={viewExpensesModalBudgetId}
-        handleClose={() => setViewExpensesModalBudgetId()}
-      />
+            <TotalBudgetCard />
+            <UncategorizedBudgetCard
+              onAddExpenseClick={openAddExpenseModal}
+              onViewExpensesClick={() =>
+                setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
+              }
+            />
+            {displayBudgetCards()}
+          </div>
+        </Container>
+        <Footer />
+        <AddBudgetModal
+          show={showAddBudgetModal}
+          handleClose={() => setShowAddBudgetModal(false)}
+        />
+        <AddExpenseModal
+          show={showAddExpenseModal}
+          defaultBudgetId={addExpenseModalBudgetId}
+          handleClose={() => setShowAddExpenseModal(false)}
+        />
+        <ViewExpensesModal
+          budgetId={viewExpensesModalBudgetId}
+          handleClose={() => setViewExpensesModalBudgetId()}
+        />
+      </Layout>
     </>
   )
 }

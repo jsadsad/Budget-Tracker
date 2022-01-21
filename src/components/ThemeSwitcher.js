@@ -1,19 +1,20 @@
 import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
-import ThemesContext from '../contexts/ThemesContext'
+// import ThemesContext from '../contexts/ThemesContext'
+import { useThemes } from '../contexts/ThemesContext'
 
 import Moon from '../images/moon.svg'
 import Sun from '../images/sun.svg'
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme } = useContext(ThemesContext)
+  const { theme, setTheme } = useThemes()
 
   return (
     <Button
       style={{ background: 'none', border: 'none', boxShadow: 'none' }}
       onClick={() => {
-        setTheme(theme == 'dark' ? 'light ' : 'dark')
-        localStorage.setItem('theme', theme)
+        setTheme(theme === 'dark' ? 'light ' : 'dark')
+        localStorage.setItem('theme', theme === 'dark' ? 'light ' : 'dark')
       }}
     >
       <img

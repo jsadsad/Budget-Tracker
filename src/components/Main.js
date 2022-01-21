@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { Container } from 'react-bootstrap'
-import ThemeContext from '../contexts/ThemesContext'
+// import ThemeContext from '../contexts/ThemesContext'
+import { useThemes } from '../contexts/ThemesContext'
 
 const Main = () => {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useThemes()
 
   return <Container fluid className={theme}></Container>
 }

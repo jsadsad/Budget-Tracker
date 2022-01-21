@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { Form, Navbar, Nav, FormControl, Button } from 'react-bootstrap'
-import ThemeContext from '../contexts/ThemesContext'
+// import ThemesContext from '../contexts/ThemesContext'
 import ThemeSwitcher from './ThemeSwitcher'
 
+import { useThemes } from '../contexts/ThemesContext'
+
 const Header = () => {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useThemes()
 
   return (
     <>
