@@ -5,22 +5,22 @@ import Moon from '../images/moon.svg'
 import Sun from '../images/sun.svg'
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme, switchTheme } = useThemes()
+  const { theme, setTheme, otherTheme } = useThemes()
 
   return (
     <Button
-      style={{ background: 'none', border: 'none', boxShadow: 'none' }}
+      style={{ border: 'none', boxShadow: 'none' }}
+      size="sm"
+      variant={otherTheme}
       onClick={() => {
-        setTheme(switchTheme())
-        localStorage.setItem('theme', switchTheme())
+        setTheme(otherTheme)
+        localStorage.setItem('theme', otherTheme)
       }}
     >
       <img
         style={{
-          height: '22px',
-          width: '22px',
-          minWidth: '22px',
-          marginBottom: '0',
+          height: '30px',
+          width: '30px',
         }}
         src={theme === 'dark' ? Sun : Moon}
         alt="theme switcher"

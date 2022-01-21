@@ -9,6 +9,7 @@ const BudgetCard = ({
   grey,
   info,
   theme,
+  otherTheme,
   onAddExpenseClick,
   hideButtons,
   onViewExpensesClick,

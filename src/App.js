@@ -77,9 +77,7 @@ const App = () => {
             >
               Add Expense
             </Button>
-            <Button variant={theme} size="sm">
-              <ThemeSwitcher />
-            </Button>
+            <ThemeSwitcher />
           </Stack>
           <div
             style={{
