@@ -1,31 +1,38 @@
-import { Button } from 'react-bootstrap'
 import { useThemes } from '../contexts/ThemesContext'
-
-import Moon from '../images/moon.svg'
-import Sun from '../images/sun.svg'
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 const ThemeSwitcher = () => {
   const { theme, setTheme, otherTheme } = useThemes()
 
+  const checked = theme === 'dark'
+
+  const sun = (
+    <span aria-label="a bright sun" role="img">
+      🌞
+    </span>
+  )
+
+  const moon = (
+    <span aria-label="a gorgeous moon" role="img">
+      🌕
+    </span>
+  )
+
   return (
-    <Button
-      style={{ border: 'none', boxShadow: 'none' }}
-      size="sm"
-      variant={otherTheme}
-      onClick={() => {
-        setTheme(otherTheme)
-        localStorage.setItem('theme', otherTheme)
-      }}
-    >
-      <img
-        style={{
-          height: '30px',
-          width: '30px',
+    <>
+      <BootstrapSwitchButton
+        onlabel={sun}
+        offlabel={moon}
+        checked={checked}
+        onstyle={otherTheme}
+        offstyle={theme}
+        size="sm"
+        onChange={() => {
+          setTheme(otherTheme)
+          localStorage.setItem('theme', otherTheme)
         }}
-        src={theme === 'dark' ? Sun : Moon}
-        alt="theme switcher"
       />
-    </Button>
+    </>
   )
 }
 
