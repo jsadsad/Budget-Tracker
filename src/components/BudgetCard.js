@@ -42,6 +42,13 @@ const BudgetCard = ({
       )
   }
 
+  const getProgressBarVariant = (amount, max) => {
+    const ratio = amount / max
+    if (ratio < 0.5) return 'primary'
+    if (ratio < 0.75) return 'warning'
+    return 'danger'
+  }
+
   const displayStack = () => {
     if (!hideButtons)
       return (
@@ -75,13 +82,6 @@ const BudgetCard = ({
       </Card.Body>
     </Card>
   )
-}
-
-const getProgressBarVariant = (amount, max) => {
-  const ratio = amount / max
-  if (ratio < 0.5) return 'primary'
-  if (ratio < 0.75) return 'warning'
-  return 'danger'
 }
 
 export default BudgetCard

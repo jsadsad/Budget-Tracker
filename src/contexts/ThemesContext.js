@@ -9,8 +9,13 @@ export const useThemes = () => {
 export const ThemesProvider = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme'))
 
+  const switchTheme = () => {
+    if (theme === 'dark') return 'light'
+    else return 'dark'
+  }
+
   return (
-    <ThemesContext.Provider value={{ theme, setTheme }}>
+    <ThemesContext.Provider value={{ theme, setTheme, switchTheme }}>
       {children}
     </ThemesContext.Provider>
   )

@@ -2,10 +2,6 @@ import { useState } from 'react'
 import { Button, Stack } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 
-import Layout from './components/Layout'
-import Main from './components/Main'
-import ThemeSwitcher from './components/ThemeSwitcher'
-
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
 import ViewExpensesModal from './components/ViewExpensesModal'
@@ -13,12 +9,14 @@ import ViewExpensesModal from './components/ViewExpensesModal'
 import BudgetCard from './components/BudgetCard'
 import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
+import Layout from './components/Layout'
+import ThemeSwitcher from './components/ThemeSwitcher'
 import Footer from './components/Footer'
 
 import { useBudgets } from './contexts/BudgetsContext'
-import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
-// import ThemesContext from './contexts/ThemesContext'
 import { useThemes } from './contexts/ThemesContext'
+
+import { UNCATEGORIZED_BUDGET_ID } from './contexts/BudgetsContext'
 
 const App = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
@@ -56,11 +54,6 @@ const App = () => {
 
   return (
     <>
-      {/* <ThemesContext.Provider value={value}> */}
-      {/* <Layout>
-          <Main />
-        </Layout> */}
-      {/* </ThemesContext.Provider> */}
       <Layout>
         <Container className="my-4">
           <Stack direction="horizontal" gap="2" className="mb-4">
@@ -84,9 +77,9 @@ const App = () => {
             >
               Add Expense
             </Button>
-            {/* <ThemesContext.Provider value={value}> */}
-            <ThemeSwitcher />
-            {/* </ThemesContext.Provider> */}
+            <Button variant={theme} size="sm">
+              <ThemeSwitcher />
+            </Button>
           </Stack>
           <div
             style={{
