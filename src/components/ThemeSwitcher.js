@@ -4,10 +4,6 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 const ThemeSwitcher = () => {
   const { theme, setTheme, otherTheme } = useThemes()
 
-  // onstyle and offstyle are NOT persistent after refresh. need to fix conditional logic.
-
-  const checked = theme === 'dark'
-
   const sun = (
     <span aria-label="a bright sun" role="img">
       🌞
@@ -20,9 +16,39 @@ const ThemeSwitcher = () => {
     </span>
   )
 
+  const darkSwitch = () => (
+    <BootstrapSwitchButton
+      checked={true}
+      onlabel={moon}
+      offlabel={sun}
+      onstyle={theme}
+      offstyle={otherTheme}
+      size="sm"
+      onChange={() => {
+        setTheme(otherTheme)
+        localStorage.setItem('theme', otherTheme)
+      }}
+    />
+  )
+
+  const lightSwitch = () => (
+    <BootstrapSwitchButton
+      checked={true}
+      onlabel={sun}
+      offlabel={moon}
+      onstyle={theme}
+      offstyle={otherTheme}
+      size="sm"
+      onChange={() => {
+        setTheme(otherTheme)
+        localStorage.setItem('theme', otherTheme)
+      }}
+    />
+  )
+
   return (
     <>
-      <BootstrapSwitchButton
+      {/* <BootstrapSwitchButton
         onlabel={sun}
         offlabel={moon}
         checked={checked}
@@ -33,7 +59,8 @@ const ThemeSwitcher = () => {
           setTheme(otherTheme)
           localStorage.setItem('theme', otherTheme)
         }}
-      />
+      /> */}
+      {theme === 'light' ? lightSwitch() : darkSwitch()}
     </>
   )
 }
