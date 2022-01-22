@@ -16,53 +16,42 @@ const ThemeSwitcher = () => {
     </span>
   )
 
-  const darkSwitch = () => (
-    <BootstrapSwitchButton
-      checked={true}
-      onlabel={moon}
-      offlabel={sun}
-      onstyle={theme}
-      offstyle={otherTheme}
-      size="sm"
-      onChange={() => {
-        setTheme(otherTheme)
-        localStorage.setItem('theme', otherTheme)
-      }}
-    />
-  )
+  const displaySwitch = () => {
+    if (theme === 'light') {
+      // Light Theme
+      return (
+        <BootstrapSwitchButton
+          onlabel={sun}
+          offlabel={moon}
+          onstyle="secondary"
+          offstyle="secondary"
+          size="sm"
+          onChange={() => {
+            setTheme(otherTheme)
+            localStorage.setItem('theme', otherTheme)
+          }}
+        />
+      )
+    } else if (theme === 'dark') {
+      // Dark Theme
+      return (
+        <BootstrapSwitchButton
+          checked
+          onlabel={sun}
+          offlabel={moon}
+          onstyle="secondary"
+          offstyle="secondary"
+          size="sm"
+          onChange={() => {
+            setTheme(otherTheme)
+            localStorage.setItem('theme', otherTheme)
+          }}
+        />
+      )
+    }
+  }
 
-  const lightSwitch = () => (
-    <BootstrapSwitchButton
-      checked={true}
-      onlabel={sun}
-      offlabel={moon}
-      onstyle={theme}
-      offstyle={otherTheme}
-      size="sm"
-      onChange={() => {
-        setTheme(otherTheme)
-        localStorage.setItem('theme', otherTheme)
-      }}
-    />
-  )
-
-  return (
-    <>
-      {/* <BootstrapSwitchButton
-        onlabel={sun}
-        offlabel={moon}
-        checked={checked}
-        onstyle={otherTheme}
-        offstyle={theme}
-        size="sm"
-        onChange={() => {
-          setTheme(otherTheme)
-          localStorage.setItem('theme', otherTheme)
-        }}
-      /> */}
-      {theme === 'light' ? lightSwitch() : darkSwitch()}
-    </>
-  )
+  return <>{displaySwitch()}</>
 }
 
 export default ThemeSwitcher
