@@ -48,6 +48,21 @@ const ThemeSwitcher = () => {
           }}
         />
       )
+    } else {
+      // default load
+      return (
+        <BootstrapSwitchButton
+          onlabel={sun}
+          offlabel={moon}
+          onstyle="secondary"
+          offstyle="secondary"
+          size="sm"
+          onChange={() => {
+            setTheme(otherTheme)
+            localStorage.setItem('theme', otherTheme)
+          }}
+        />
+      )
     }
   }
 
