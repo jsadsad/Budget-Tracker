@@ -4,8 +4,6 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 const ThemeSwitcher = () => {
   const { theme, setTheme, otherTheme } = useThemes()
 
-  const checked = theme === 'dark'
-
   const sun = (
     <span aria-label="a bright sun" role="img">
       🌞
@@ -18,22 +16,42 @@ const ThemeSwitcher = () => {
     </span>
   )
 
-  return (
-    <>
-      <BootstrapSwitchButton
-        onlabel={sun}
-        offlabel={moon}
-        checked={checked}
-        onstyle={otherTheme}
-        offstyle={theme}
-        size="sm"
-        onChange={() => {
-          setTheme(otherTheme)
-          localStorage.setItem('theme', otherTheme)
-        }}
-      />
-    </>
-  )
+  const displaySwitch = () => {
+    if (theme === 'light') {
+      // Light Theme
+      return (
+        <BootstrapSwitchButton
+          onlabel={sun}
+          offlabel={moon}
+          onstyle="secondary"
+          offstyle="secondary"
+          size="sm"
+          onChange={() => {
+            setTheme(otherTheme)
+            localStorage.setItem('theme', otherTheme)
+          }}
+        />
+      )
+    } else if (theme === 'dark') {
+      // Dark Theme
+      return (
+        <BootstrapSwitchButton
+          checked
+          onlabel={sun}
+          offlabel={moon}
+          onstyle="secondary"
+          offstyle="secondary"
+          size="sm"
+          onChange={() => {
+            setTheme(otherTheme)
+            localStorage.setItem('theme', otherTheme)
+          }}
+        />
+      )
+    }
+  }
+
+  return <>{displaySwitch()}</>
 }
 
 export default ThemeSwitcher
