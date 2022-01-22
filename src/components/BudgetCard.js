@@ -9,7 +9,6 @@ const BudgetCard = ({
   grey,
   info,
   theme,
-  otherTheme,
   onAddExpenseClick,
   hideButtons,
   onViewExpensesClick,
@@ -50,6 +49,8 @@ const BudgetCard = ({
     return 'danger'
   }
 
+  const textColor = theme === 'dark' ? 'white' : 'black'
+
   const displayStack = () => {
     if (!hideButtons)
       return (
@@ -69,7 +70,7 @@ const BudgetCard = ({
   }
 
   return (
-    <Card bg={theme} className={classNames.join(' ')}>
+    <Card text={textColor} bg={theme} className={classNames.join(' ')}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2">{name}</div>
