@@ -9,6 +9,7 @@ const BudgetCard = ({
   grey,
   info,
   theme,
+  textColor,
   onAddExpenseClick,
   hideButtons,
   onViewExpensesClick,
@@ -48,8 +49,6 @@ const BudgetCard = ({
     if (ratio < 0.75) return 'warning'
     return 'danger'
   }
-
-  const textColor = theme === 'dark' ? 'white' : 'black'
 
   const displayStack = () => {
     if (!hideButtons)

@@ -10,9 +10,10 @@ export const ThemesProvider = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme'))
 
   const otherTheme = theme === 'dark' ? 'light' : 'dark'
+  const textColor = theme === 'dark' ? 'white' : 'black'
 
   return (
-    <ThemesContext.Provider value={{ theme, setTheme, otherTheme }}>
+    <ThemesContext.Provider value={{ theme, setTheme, otherTheme, textColor }}>
       {children}
     </ThemesContext.Provider>
   )
