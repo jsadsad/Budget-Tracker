@@ -6,6 +6,7 @@ import AddBudgetModal from './components/AddBudgetModal'
 import AddExpenseModal from './components/AddExpenseModal'
 import ViewExpensesModal from './components/ViewExpensesModal'
 
+import Header from './components/Header'
 import BudgetCard from './components/BudgetCard'
 import TotalBudgetCard from './components/TotalBudgetCard'
 import UncategorizedBudgetCard from './components/UncategorizedBudgetCard'
@@ -58,12 +59,7 @@ const App = () => {
       <Layout>
         <Container className="my-4">
           <Stack direction="horizontal" gap="2" className="mb-4">
-            <h1
-              className="me-auto"
-              style={{ fontStyle: 'oblique', cursor: 'default' }}
-            >
-              Budget Tracker
-            </h1>
+            <Header textColor={textColor} />
             <Button
               variant="success"
               style={{ boxShadow: 'none' }}
