@@ -61,7 +61,11 @@ const BudgetCard = ({
           >
             Add Expense
           </Button>
-          <Button onClick={onViewExpensesClick} variant="outline-secondary">
+          <Button
+            onClick={onViewExpensesClick}
+            variant="outline-secondary"
+            style={{ color: `${textColor}` }}
+          >
             View Expenses
           </Button>
         </Stack>
