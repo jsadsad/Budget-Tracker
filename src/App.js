@@ -24,7 +24,7 @@ const App = () => {
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState()
   const [addExpenseModalBudgetId, setAddExpenseModalId] = useState()
 
-  const { budgets, getBudgetExpenses } = useBudgets() // gettign the budgets from the context.
+  const { budgets, getBudgetExpenses } = useBudgets()
   const { theme, textColor } = useThemes()
 
   const openAddExpenseModal = (budgetId) => {
